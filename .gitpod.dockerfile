@@ -31,7 +31,7 @@ ENV PATH=/usr/lib/postgresql/12/bin:/home/gitpod/.nvm/versions/node/v${NODE_VERS
 ENV PGDATA="/workspace/.pgsql/data"
 
 RUN mkdir -p ~/.pg_ctl/bin ~/.pg_ctl/sockets \
-    && echo '#!/bin/bash\n. ${GITPOD_REPO_ROOT}/.vscode/uptime.sh &\n[ ! -d $PGDATA ] && mkdir -p $PGDATA && initdb --auth=trust -D $PGDATA\npg_ctl -D $PGDATA -l ~/.pg_ctl/log -o "-k ~/.pg_ctl/sockets" start\n' > ~/.pg_ctl/bin/pg_start \
+    && echo '#!/bin/bash\n[ ! -d $PGDATA ] && mkdir -p $PGDATA && initdb --auth=trust -D $PGDATA\npg_ctl -D $PGDATA -l ~/.pg_ctl/log -o "-k ~/.pg_ctl/sockets" start\n' > ~/.pg_ctl/bin/pg_start \
     && echo '#!/bin/bash\npg_ctl -D $PGDATA -l ~/.pg_ctl/log -o "-k ~/.pg_ctl/sockets" stop\n' > ~/.pg_ctl/bin/pg_stop \
     && chmod +x ~/.pg_ctl/bin/*
 ENV PATH="$PATH:$HOME/.pg_ctl/bin"
