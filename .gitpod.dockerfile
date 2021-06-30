@@ -12,10 +12,10 @@ RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 20691eec35
     sudo sh -c 'echo "deb http://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list'  && \
     sudo apt-get update -y  && \
     sudo touch /etc/init.d/mongod  && \
-    sudo apt-get -y install mongodb-org-shell -y  && \
-    sudo apt-get -y install links  && \
+    sudo apt-get install -y mongodb-org-shell  && \
+    sudo apt-get install -y links  && \
     sudo apt-get install -y mysql-server && \
-    sudo apt-get clean && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/* && \
+    sudo apt-get clean -y && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/* && \
     sudo mkdir /var/run/mysqld && \
     sudo chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade /home/gitpod/.cache/heroku/
 
@@ -24,7 +24,6 @@ RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 20691eec35
 RUN sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list' && \
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8 && \
     sudo apt-get update -y && \
-    sudo apt-get -y install links  && \
     sudo apt-get install -y postgresql-12
 
 ENV PATH=/usr/lib/postgresql/12/bin:/home/gitpod/.nvm/versions/node/v${NODE_VERSION}/bin:$PATH
