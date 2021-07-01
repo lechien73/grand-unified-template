@@ -21,3 +21,4 @@ echo "Creating .sqliterc file"
 echo ".headers on" > ~/.sqliterc
 echo ".mode column" >> ~/.sqliterc
 echo "Your workspace is ready to use. Happy coding!"
+code README.md
